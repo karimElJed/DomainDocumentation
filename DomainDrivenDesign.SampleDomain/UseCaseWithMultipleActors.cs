@@ -4,7 +4,8 @@ namespace DomainDrivenDesign.SampleDomain;
 
 [UseCase]
 [TriggeredBy(typeof(Actors.Admin))]
-public class UseCaseWithOneActor
+[TriggeredBy(typeof(Actors.PremiumUser))]
+public class UseCaseWithMultipleActors
 {
     
 }

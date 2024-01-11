@@ -65,6 +65,20 @@ public class UseCaseDiagramTest
     }
     
     [Test]
+    public void CreateDiagram_UseCaseTriggeredByUseCase_AddsRelation()
+    {
+        _sut.AddUseCase(typeof(UseCaseTriggeredByAnotherUseCase));
+
+        _sut.UseCases.Count.Should().Be(2);
+        _sut.Actors.Count.Should().Be(1);
+        _sut.Relations.Count.Should().Be(2);
+
+        _sut.Relations.Any(relation =>
+                relation.From.Identifier == "UseCaseWithOneActor" && relation.To.Identifier == "UseCaseTriggeredByAnotherUseCase")
+            .Should().BeTrue();
+    }
+    
+    [Test]
     public void CreateDiagram_USeCaseWithAlreadyAddedActor_DoesNotAddActorAgain()
     {
         _sut.AddUseCase(typeof(UseCaseWithOneActor));

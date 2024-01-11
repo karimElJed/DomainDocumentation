@@ -32,18 +32,24 @@ public class UseCaseDiagram
         foreach (var triggeredByAttribute in triggeredByAttributes)
         {
             var actorType = triggeredByAttribute.ActorType;
-            var actor = new Actor(actorType.Name);
-            Add(actor);
 
-            _relations.Add(new Relation(actor, useCase));
-        }
-    }
+            if (actorType.IsActor())
+            {
+                var actor = new Actor(actorType.Name);
+                Add(actor);
 
-    private void Add(Actor actor)
-    {
-        if (_actors.All(a => a.Identifier != actor.Identifier))
-        {
-            _actors.Add(actor);
+                _relations.Add(new Relation(actor, useCase));
+                continue;
+            }
+
+            if (actorType.IsUseCase())
+            {
+                var actorUseCase = new UseCase(actorType.Name);
+                Add(actorUseCase);
+
+                _relations.Add(new Relation(actorUseCase, useCase));
+                continue;
+            }
         }
     }
 
@@ -74,5 +80,21 @@ public class UseCaseDiagram
         }
         
         sb.AppendLine();
+    }
+    
+    private void Add(Actor actor)
+    {
+        if (_actors.All(a => a.Identifier != actor.Identifier))
+        {
+            _actors.Add(actor);
+        }
+    }
+    
+    private void Add(UseCase useCase)
+    {
+        if (_useCases.All(uc => uc.Identifier != useCase.Identifier))
+        {
+            _useCases.Add(useCase);
+        }
     }
 }
