@@ -63,4 +63,12 @@ public class UseCaseDiagramTest
                 relation.From.Identifier == "PremiumUser" && relation.To.Identifier == "UseCaseWithMultipleActors")
             .Should().BeTrue();
     }
+
+    [Test]
+    public void ToPlantUml_EmptyDiagram_ReturnsValidUml()
+    {
+        var uml = _sut.ToPlantUml();
+        
+        uml.Should().Be(@"@startuml" + Environment.NewLine + "@enduml");
+    }
 }

@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text;
 using DomainDrivenDesign.Core.Attributes;
 
 namespace DomainDrivenDesign.DiagramGenerators.UseCases;
@@ -36,5 +37,34 @@ public class UseCaseDiagram
 
             _relations.Add(new Relation(actor, useCase));
         }
+    }
+
+    public string ToPlantUml()
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine("@startuml");
+        sb.AppendLine();
+
+        RenderAsPlantUml(sb, 0, _actors);
+        RenderAsPlantUml(sb, 0, _useCases);
+        RenderAsPlantUml(sb, 0, _relations);
+
+        sb.Append("@enduml");
+        
+        return sb.ToString();
+    }
+
+    private void RenderAsPlantUml(StringBuilder sb, int indent, IEnumerable<DiagramObject> objects)
+    {
+        var indentation = new string('\t', indent);
+        
+        foreach (var @object in objects)
+        {
+            sb.Append(indentation);
+            sb.AppendLine( @object.ToPlantUml());
+        }
+        
+        sb.AppendLine();
     }
 }

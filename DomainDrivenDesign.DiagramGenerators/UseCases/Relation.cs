@@ -1,8 +1,8 @@
 namespace DomainDrivenDesign.DiagramGenerators.UseCases;
 
-public class Relation
+public class Relation : DiagramObject
 {
-    public Relation(DiagramObject from, DiagramObject to)
+    public Relation(Actor from, UseCase to) : base($"{from.Identifier}_{to.Identifier}")
     {
         From = from;
         To = to;
@@ -11,7 +11,7 @@ public class Relation
     public DiagramObject From { get; }
     public DiagramObject To { get; }
 
-    public string ToPlantUml()
+    public override string ToPlantUml()
     {
         return $"{From} --> {To}";
     }

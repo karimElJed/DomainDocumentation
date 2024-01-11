@@ -13,6 +13,8 @@ public abstract class DiagramObject
     public string Identifier { get; }
 
     public string Title { get; }
+
+    public abstract string ToPlantUml();
     
     protected string IdentifierToTitle(string identifier)
     {

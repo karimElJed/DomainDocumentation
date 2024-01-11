@@ -6,7 +6,7 @@ public class Actor : DiagramObject
     {
     }
 
-    public string ToPlantUml()
+    public override string ToPlantUml()
     {
         return $"actor \"{Title}\" as {Identifier}";
     }

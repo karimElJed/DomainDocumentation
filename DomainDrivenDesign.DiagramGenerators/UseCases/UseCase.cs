@@ -7,7 +7,7 @@ public class UseCase : DiagramObject
     {
     }
 
-    public string ToPlantUml()
+    public override string ToPlantUml()
     {
         return $"\"{Title}\" as ({Identifier})";
     }
