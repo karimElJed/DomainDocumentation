@@ -1,4 +1,5 @@
 ﻿using DomainDrivenDesign.Core.Attributes;
+// ReSharper disable InconsistentNaming
 
 namespace DomainDrivenDesign.SampleDomain;
 
@@ -13,4 +14,7 @@ public static class Actors
     public static class PremiumUser
     {
     }
+    
+    [Actor(Stereotype = "Application")]
+    public static class CMS {}
 }

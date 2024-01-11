@@ -1,12 +1,15 @@
+using System.Reflection;
 using DomainDrivenDesign.Core.Attributes;
 
 namespace DomainDrivenDesign.DiagramGenerators;
 
 public static class TypeExtensions
 {
-    public static bool IsActor(this Type type)
+    public static bool IsActor(this Type type, out ActorAttribute? actorAttribute)
     {
-        return type.IsDefined(typeof(ActorAttribute), true);
+        actorAttribute = type.GetCustomAttribute<ActorAttribute>(true);
+
+        return actorAttribute != null;
     }
     
     public static bool IsUseCase(this Type type)

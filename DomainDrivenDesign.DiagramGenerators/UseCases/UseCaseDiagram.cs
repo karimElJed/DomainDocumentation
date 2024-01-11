@@ -33,9 +33,9 @@ public class UseCaseDiagram
         {
             var actorType = triggeredByAttribute.ActorType;
 
-            if (actorType.IsActor())
+            if (actorType.IsActor(out var actorAttribute))
             {
-                var actor = new Actor(actorType.Name);
+                var actor = new Actor(actorType.Name) { Stereotype = actorAttribute?.Stereotype };
                 Add(actor);
 
                 _relations.Add(new Relation(actor, useCase));

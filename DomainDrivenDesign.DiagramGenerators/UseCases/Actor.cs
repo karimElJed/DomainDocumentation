@@ -6,9 +6,12 @@ public class Actor : DiagramObject
     {
     }
 
+    public string? Stereotype { get; set; }
+
     public override string ToPlantUml()
     {
-        return $"actor \"{Title}\" as {Identifier}";
+        var stereotype = string.IsNullOrWhiteSpace(Stereotype) ? string.Empty : $"<<{Stereotype}>>";
+        return $"actor \"{Title}\"{stereotype} as {Identifier}";
     }
 
     public override string ToString()
