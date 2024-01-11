@@ -5,29 +5,36 @@ namespace DomainDrivenDesign.DiagramGenerators.UseCases;
 
 public class UseCaseDiagram
 {
-    private List<UseCase> _useCases = new();
-    private List<Actor> _actors = new();
+    private readonly List<UseCase> _useCases = new();
+    private readonly List<Actor> _actors = new();
+    private readonly List<Relation> _relations = new();
+    
+    public IReadOnlyList<UseCase> UseCases => _useCases.AsReadOnly();
+    public IReadOnlyList<Actor> Actors => _actors.AsReadOnly();
+    public IReadOnlyList<Relation> Relations => _relations.AsReadOnly();
 
     public void AddUseCase(Type useCaseType)
     {
-        var useCaseAttribute = useCaseType.GetCustomAttribute(typeof(UseCaseAttribute))!;
+        var useCaseAttribute = useCaseType.GetCustomAttribute<UseCaseAttribute>()!;
 
         if (useCaseAttribute == null)
         {
             throw new NotSupportedException("Type must have a UseCaseAttribute.");
         }
         
-        string identifier = useCaseType.Name;
-        var useCase = new UseCase(identifier);
+        var useCase = new UseCase(useCaseType.Name);
         
         _useCases.Add(useCase);
-    }
 
-    public void AddActor(Type actorType)
-    {
-        
-    }
+        var triggeredByAttributes = useCaseType.GetCustomAttributes<TriggeredByAttribute>();
 
-    public IReadOnlyList<UseCase> UseCases => _useCases.AsReadOnly();
-    public IReadOnlyList<Actor> Actors => _actors.AsReadOnly();
+        foreach (var triggeredByAttribute in triggeredByAttributes)
+        {
+            var actorType = triggeredByAttribute.ActorType;
+            var actor = new Actor(actorType.Name);
+            _actors.Add(actor);
+
+            _relations.Add(new Relation(actor, useCase));
+        }
+    }
 }

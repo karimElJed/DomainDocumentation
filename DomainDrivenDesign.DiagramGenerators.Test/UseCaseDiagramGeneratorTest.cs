@@ -3,7 +3,6 @@ using DomainDrivenDesign.SampleDomain;
 using FluentAssertions;
 using NUnit.Framework;
 
-
 namespace DomainDrivenDesign.DiagramGenerators.Test;
 
 [TestFixture]
@@ -34,6 +33,35 @@ public class UseCaseDiagramGeneratorTest
         result.Actors.Count.Should().Be(0);
     }
 
-    // Todo: UseCase with one actor => Relations!
-     
+    [Test]
+    public void CreateDiagram_UseCaseWithOneActor_GeneratesCorrectDiagram()
+    {
+        var sut = new UseCaseDiagramGenerator(typeof(UseCaseWithOneActor));
+
+        var result = sut.CreateDiagram();
+
+        result.UseCases.Count.Should().Be(1);
+        result.Actors.Count.Should().Be(1);
+        result.Relations.Count.Should().Be(1);
+    }
+    
+    [Test]
+    public void CreateDiagram_UseCaseWithMultipleActors_GeneratesCorrectDiagram()
+    {
+        var sut = new UseCaseDiagramGenerator(typeof(UseCaseWithMultipleActors));
+
+        var result = sut.CreateDiagram();
+
+        result.UseCases.Count.Should().Be(1);
+        result.Actors.Count.Should().Be(2);
+        result.Relations.Count.Should().Be(2);
+
+        result.Relations.Any(relation =>
+            relation.From.Identifier == "Admin" && relation.To.Identifier == "UseCaseWithMultipleActors")
+            .Should().BeTrue();
+        
+        result.Relations.Any(relation =>
+                relation.From.Identifier == "PremiumUser" && relation.To.Identifier == "UseCaseWithMultipleActors")
+            .Should().BeTrue();
+    }     
 }

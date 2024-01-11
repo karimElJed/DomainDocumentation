@@ -1,5 +1,6 @@
 namespace DomainDrivenDesign.Core.Attributes;
 
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 public class TriggeredByAttribute : Attribute
 {
     public TriggeredByAttribute(Type actorType)
