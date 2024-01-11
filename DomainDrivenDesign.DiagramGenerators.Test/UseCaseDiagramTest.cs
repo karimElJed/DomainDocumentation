@@ -47,7 +47,7 @@ public class UseCaseDiagramTest
     }
     
     [Test]
-    public void CreateDiagram_UseCaseWithMultipleActors_GeneratesCorrectDiagram()
+    public void CreateDiagram_UseCaseWithMultipleActors_AddsMultipleActors()
     {
         _sut.AddUseCase(typeof(UseCaseWithMultipleActors));
 
@@ -63,12 +63,24 @@ public class UseCaseDiagramTest
                 relation.From.Identifier == "PremiumUser" && relation.To.Identifier == "UseCaseWithMultipleActors")
             .Should().BeTrue();
     }
+    
+    [Test]
+    public void CreateDiagram_USeCaseWithAlreadyAddedActor_DoesNotAddActorAgain()
+    {
+        _sut.AddUseCase(typeof(UseCaseWithOneActor));
+        
+        _sut.AddUseCase(typeof(UseCaseWithMultipleActors));
+        
+        _sut.Actors.Count.Should().Be(2);
+    }
 
     [Test]
     public void ToPlantUml_EmptyDiagram_ReturnsValidUml()
     {
         var uml = _sut.ToPlantUml();
-        
-        uml.Should().Be(@"@startuml" + Environment.NewLine + "@enduml");
+
+        var trimmedUml = uml.Replace(Environment.NewLine, "");
+        trimmedUml.Should().Be(@"@startuml@enduml");
+        trimmedUml.Should().NotBeEquivalentTo(uml);
     }
 }

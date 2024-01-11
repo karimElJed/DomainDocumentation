@@ -33,9 +33,17 @@ public class UseCaseDiagram
         {
             var actorType = triggeredByAttribute.ActorType;
             var actor = new Actor(actorType.Name);
-            _actors.Add(actor);
+            Add(actor);
 
             _relations.Add(new Relation(actor, useCase));
+        }
+    }
+
+    private void Add(Actor actor)
+    {
+        if (_actors.All(a => a.Identifier != actor.Identifier))
+        {
+            _actors.Add(actor);
         }
     }
 
