@@ -6,4 +6,14 @@ public class UseCase : DiagramObject
         : base(identifier)
     {
     }
+
+    public string ToPlantUml()
+    {
+        return $"\"{Title}\" as ({Identifier})";
+    }
+
+    public override string ToString()
+    {
+        return $"({Identifier})";
+    }
 }

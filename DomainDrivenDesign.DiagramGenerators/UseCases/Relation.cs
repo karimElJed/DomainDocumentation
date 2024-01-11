@@ -10,4 +10,9 @@ public class Relation
     
     public DiagramObject From { get; }
     public DiagramObject To { get; }
+
+    public string ToPlantUml()
+    {
+        return $"{From} --> {To}";
+    }
 }
