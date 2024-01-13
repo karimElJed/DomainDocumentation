@@ -11,4 +11,18 @@
     </ItemGroup>
 
 
+    <ItemGroup>
+      <None Update="markdown.xslt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="bin\Debug\net7.0\markdown.xslt" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="bin\Debug\net7.0\" />
+    </ItemGroup>
+
 </Project>
