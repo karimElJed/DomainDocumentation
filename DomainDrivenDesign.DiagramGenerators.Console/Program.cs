@@ -3,8 +3,8 @@
 using DomainDrivenDesign.DiagramGenerators.UseCases;
 using DomainDrivenDesign.SampleDomain;
 
-var generator = new UseCaseDiagramGenerator(typeof(UseCaseWithMultipleActors).Assembly);
-var diagram = generator.CreateDiagram();
+var generator = new UseCaseDiagramGenerator(typeof(UseCaseWithMultipleActors).Assembly, true);
+var diagram = generator.CreateDiagramForAllUseCases();
 
 var uml = diagram.ToPlantUml();
 Console.WriteLine(uml);

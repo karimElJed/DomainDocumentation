@@ -1,19 +1,18 @@
 ﻿using System.Reflection;
-using System.Text.RegularExpressions;
 using DomainDrivenDesign.Core.Attributes;
 
 namespace DomainDrivenDesign.DiagramGenerators.UseCases;
 
 public class UseCaseDiagramGenerator
 {
-    private readonly Assembly _assembly;
+    private readonly Assembly _assembly;     
 
-    public UseCaseDiagramGenerator(Assembly assembly)
+    public UseCaseDiagramGenerator(Assembly assembly, bool withDocumentation = false)
     {
         _assembly = assembly;
     }
 
-    public UseCaseDiagram CreateDiagram()
+    public UseCaseDiagram CreateDiagramForAllUseCases()
     {
         var diagram = new UseCaseDiagram();
 

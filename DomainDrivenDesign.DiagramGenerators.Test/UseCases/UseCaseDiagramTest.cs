@@ -3,7 +3,7 @@ using DomainDrivenDesign.SampleDomain;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace DomainDrivenDesign.DiagramGenerators.Test;
+namespace DomainDrivenDesign.DiagramGenerators.Test.UseCases;
 
 [TestFixture]
 public class UseCaseDiagramTest

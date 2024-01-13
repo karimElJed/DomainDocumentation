@@ -23,4 +23,5 @@
       <ProjectReference Include="..\DomainDrivenDesign.SampleDomain\DomainDrivenDesign.SampleDomain.csproj" />
     </ItemGroup>
 
+
 </Project>
