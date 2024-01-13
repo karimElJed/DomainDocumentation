@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace DomainDrivenDesign.DiagramGenerators;
+namespace DomainDrivenDesign.DiagramGenerators.Diagrams;
 
 public abstract class DiagramObject
 {

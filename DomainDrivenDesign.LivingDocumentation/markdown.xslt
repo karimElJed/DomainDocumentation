@@ -8,7 +8,9 @@
     </xsl:template>
 
     <xsl:template match="summary">
-        <xsl:value-of select="." />
+        
+        <xsl:value-of select="normalize-space(.)" /> 
+<!--        todo: see-Tags are deleted-->
     </xsl:template>
 
 </xsl:stylesheet>

@@ -1,4 +1,4 @@
-namespace DomainDrivenDesign.DiagramGenerators.UseCases;
+namespace DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 
 public class UseCase : DiagramObject
 {

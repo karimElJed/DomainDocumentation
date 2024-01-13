@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DomainDrivenDesign.DiagramGenerators\DomainDrivenDesign.DiagramGenerators.csproj" />
+      <ProjectReference Include="..\DomainDrivenDesign.LivingDocumentation\DomainDrivenDesign.LivingDocumentation.csproj" />
       <ProjectReference Include="..\DomainDrivenDesign.SampleDomain\DomainDrivenDesign.SampleDomain.csproj" />
     </ItemGroup>
 

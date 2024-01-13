@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.SampleDomain", "DomainDrivenDesign.SampleDomain\DomainDrivenDesign.SampleDomain.csproj", "{F4A5D129-DD3C-49A3-BEBB-A09AB06EFE36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.DiagramGenerators", "DomainDrivenDesign.DiagramGenerators\DomainDrivenDesign.DiagramGenerators.csproj", "{72E666B5-AEC3-4404-AA2F-57B61C516CBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.LivingDocumentation", "DomainDrivenDesign.LivingDocumentation\DomainDrivenDesign.LivingDocumentation.csproj", "{72E666B5-AEC3-4404-AA2F-57B61C516CBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.DiagramGenerators.Test", "DomainDrivenDesign.DiagramGenerators.Test\DomainDrivenDesign.DiagramGenerators.Test.csproj", "{708E24C5-54F4-47AD-B644-9BDF1DFB6056}"
 EndProject

@@ -1,7 +1,7 @@
 using System.Reflection;
 using DomainDrivenDesign.Core.Attributes;
 
-namespace DomainDrivenDesign.DiagramGenerators;
+namespace DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 
 public static class TypeExtensions
 {

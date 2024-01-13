@@ -1,4 +1,4 @@
-using DomainDrivenDesign.DiagramGenerators.UseCases;
+using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 using FluentAssertions;
 using NUnit.Framework;
 

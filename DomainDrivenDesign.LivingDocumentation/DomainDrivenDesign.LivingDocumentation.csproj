@@ -4,6 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>DomainDrivenDesign.DiagramGenerators</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,6 +16,7 @@
       <None Update="markdown.xslt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Remove="bin\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -23,6 +25,14 @@
 
     <ItemGroup>
       <Folder Include="bin\Debug\net7.0\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="bin\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="bin\**" />
     </ItemGroup>
 
 </Project>
