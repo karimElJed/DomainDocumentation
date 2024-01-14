@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DomainDrivenDesign.Core\DomainDrivenDesign.Core.csproj" />
+      <ProjectReference Include="..\PlantUML.TextEncoder\PlantUML.TextEncoder.csproj" />
     </ItemGroup>
 
 
