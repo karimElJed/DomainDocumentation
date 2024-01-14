@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.DiagramG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.DiagramGenerators.Console", "DomainDrivenDesign.DiagramGenerators.Console\DomainDrivenDesign.DiagramGenerators.Console.csproj", "{A961A149-6A8B-4831-87A4-60FA2905CBA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantUML.TextEncoder", "PlantUML.TextEncoder\PlantUML.TextEncoder.csproj", "{089CC1A8-B7EA-4DAB-8A8B-B5CFCD60BA09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{A961A149-6A8B-4831-87A4-60FA2905CBA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A961A149-6A8B-4831-87A4-60FA2905CBA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A961A149-6A8B-4831-87A4-60FA2905CBA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{089CC1A8-B7EA-4DAB-8A8B-B5CFCD60BA09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089CC1A8-B7EA-4DAB-8A8B-B5CFCD60BA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089CC1A8-B7EA-4DAB-8A8B-B5CFCD60BA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089CC1A8-B7EA-4DAB-8A8B-B5CFCD60BA09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

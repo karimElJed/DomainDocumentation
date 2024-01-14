@@ -21,6 +21,8 @@
     <ItemGroup>
       <ProjectReference Include="..\DomainDrivenDesign.LivingDocumentation\DomainDrivenDesign.LivingDocumentation.csproj" />
       <ProjectReference Include="..\DomainDrivenDesign.SampleDomain\DomainDrivenDesign.SampleDomain.csproj" />
+      <ProjectReference Include="..\PlantUML.TextEncoder\PlantUML.TextEncoder.csproj" />
+
     </ItemGroup>
 
 
