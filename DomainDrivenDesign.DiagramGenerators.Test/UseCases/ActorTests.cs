@@ -1,4 +1,5 @@
 using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
+using DomainDrivenDesign.SampleDomain;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -10,7 +11,7 @@ public class ActorTests
     [Test]
     public void ToPlantUml_WithoutStereotype_ReturnsCorrectUml()
     {
-        var sut = new Actor("PremiumUser");
+        var sut = new Actor(typeof(Actors.PremiumUser));
 
         var uml = sut.ToPlantUml();
 
@@ -20,10 +21,10 @@ public class ActorTests
     [Test]
     public void ToPlantUml_WithStereotype_ReturnsCorrectUml()
     {
-        var sut = new Actor("ServiceAPI") { Stereotype = "System"};
+        var sut = new Actor(typeof(Actors.PremiumUser)) { Stereotype = "Human"};
 
         var uml = sut.ToPlantUml();
 
-        uml.Should().Be("actor \"Service API\"<<System>> as ServiceAPI");
+        uml.Should().Be("actor \"Premium User\" <<Human>> as PremiumUser");
     }
 }

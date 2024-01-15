@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace DomainDrivenDesign.DiagramGenerators;
 
-public class DocumentationProvider
+public class DocumentationProvider : IDocumentationProvider
 {
     private readonly XmlDocument _xmlDocumentation;
 
@@ -27,6 +27,7 @@ public class DocumentationProvider
         return new DocumentationProvider(xmlDocumentationPath);
     }
     
+    /// <inheritdoc />
     public XmlNode? GetDocumentation(Type type)
     {
         var key = "T:" + CreateKey(type.FullName!, null);

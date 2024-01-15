@@ -5,16 +5,18 @@ namespace DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 
 public class UseCaseDiagramGenerator
 {
-    private readonly Assembly _assembly;     
+    private readonly Assembly _assembly;
+    private readonly IDocumentationProvider _documentationProvider;
 
-    public UseCaseDiagramGenerator(Assembly assembly, bool withDocumentation = false)
+    public UseCaseDiagramGenerator(Assembly assembly, IDocumentationProvider documentationProvider)
     {
         _assembly = assembly;
+        _documentationProvider = documentationProvider;
     }
 
     public UseCaseDiagram CreateDiagramForAllUseCases()
     {
-        var diagram = new UseCaseDiagram();
+        var diagram = new UseCaseDiagram(_documentationProvider);
 
         var useCaseTypes = _assembly.GetTypes().Where(t => t.IsDefined(typeof(UseCaseAttribute)) && !t.IsAbstract);
 

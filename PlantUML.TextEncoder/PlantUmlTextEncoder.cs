@@ -48,8 +48,11 @@ public static class PlantUmlTextEncoder
         foreach (var c in base64)
         {
             var index = Base64DecodingAlphabet.IndexOf((byte)c);
-            var transformedByte = PlantUmlEncodingAlphabet[index];
-            plantUml += Convert.ToChar(transformedByte);
+            if (index >= 0)
+            {
+                var transformedByte = PlantUmlEncodingAlphabet[index];
+                plantUml += Convert.ToChar(transformedByte);
+            }
         }
 
         return plantUml;

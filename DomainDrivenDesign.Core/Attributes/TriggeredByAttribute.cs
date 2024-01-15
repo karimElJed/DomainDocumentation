@@ -9,4 +9,6 @@ public class TriggeredByAttribute : Attribute
     }
     
     public Type ActorType { get; }
+
+    public string Reason { get; init; }
 }

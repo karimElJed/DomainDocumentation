@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using DomainDrivenDesign.DiagramGenerators;
+using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 using DomainDrivenDesign.SampleDomain;
 
 var assembly = typeof(UseCaseWithMultipleActors).Assembly;
@@ -16,7 +17,8 @@ var documentation2 = generator.DocumentUseCase(typeof(UseCaseWithOneActor));
 File.WriteAllText("documentation2.md", documentation2);
 Console.WriteLine(documentation2);
 
-//var generator = new UseCaseDiagramGenerator(assembly, true);
-//var diagram = generator.CreateDiagramForAllUseCases();
-//var uml = diagram.ToPlantUml();
-//Console.WriteLine(uml);
+var diagramGenerator = new UseCaseDiagramGenerator(assembly, provider);
+var diagram = diagramGenerator.CreateDiagramForAllUseCases();
+var uml = diagram.ToPlantUml();
+File.WriteAllText("all_usecases.puml", uml);
+Console.WriteLine(uml);

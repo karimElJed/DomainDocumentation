@@ -1,4 +1,5 @@
 using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
+using DomainDrivenDesign.SampleDomain;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -10,10 +11,10 @@ public class RelationTests
     [Test]
     public void ToPlantUml_ReturnsValidUml()
     {
-        var sut = new Relation(new Actor("PremiumUser"), new UseCase("DeleteShoppingCart"));
+        var sut = new Relation(Actor.Create(typeof(Actors.PremiumUser)), UseCase.Create(typeof(UseCaseWithOneActor)));
 
         var uml = sut.ToPlantUml();
 
-        uml.Should().Be("PremiumUser --> (DeleteShoppingCart)");
+        uml.Should().Be("PremiumUser --> (UseCaseWithOneActor)");
     }
 }

@@ -1,4 +1,5 @@
 using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
+using DomainDrivenDesign.SampleDomain;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -10,10 +11,10 @@ public class UseCaseTests
     [Test]
     public void ToPlantUml_ReturnsValidUml()
     {
-        var sut = new UseCase("AddItemToShoppingCart");
+        var sut = UseCase.Create(typeof(UseCaseWithOneActor));
 
         var uml = sut.ToPlantUml();
 
-        uml.Should().Be("\"Add Item To Shopping Cart\" as (AddItemToShoppingCart)");
+        uml.Should().Be("\"Use Case With One Actor\" as (UseCaseWithOneActor)");
     }
 }

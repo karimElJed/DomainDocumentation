@@ -1,9 +1,16 @@
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace DomainDrivenDesign.DiagramGenerators.Diagrams;
 
 public abstract class DiagramObject
 {
+    protected DiagramObject(Type implementingType) 
+        : this(implementingType.Name)
+    {
+        ImplementingType = implementingType;
+    }
+
     protected DiagramObject(string identifier)
     {
         Identifier = identifier;
@@ -13,6 +20,12 @@ public abstract class DiagramObject
     public string Identifier { get; }
 
     public string Title { get; }
+    
+    public Type ImplementingType { get; }
+    
+    public XmlNode? Documentation { get; protected set; }
+
+    public bool HasDocumentation => Documentation != null;
 
     public abstract string ToPlantUml();
     

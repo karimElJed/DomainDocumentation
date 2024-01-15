@@ -29,8 +29,13 @@ public class DocumentationFormatter
         return new DocumentationFormatter(xsltPath);
     }
     
-    public string? Format(XmlNode documentationNode)
+    public string? Format(XmlNode? documentationNode)
     {
+        if (documentationNode == null)
+        {
+            return null;
+        }
+        
         var memoryStream = new MemoryStream();
         _transform.Transform(new XPathDocument(new XmlNodeReader(documentationNode)), null, memoryStream);
         

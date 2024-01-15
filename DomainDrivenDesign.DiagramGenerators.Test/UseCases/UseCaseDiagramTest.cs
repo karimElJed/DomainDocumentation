@@ -1,3 +1,4 @@
+using DomainDrivenDesign.Core.Attributes;
 using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 using DomainDrivenDesign.SampleDomain;
 using FluentAssertions;
@@ -9,11 +10,13 @@ namespace DomainDrivenDesign.DiagramGenerators.Test.UseCases;
 public class UseCaseDiagramTest
 {
     private UseCaseDiagram _sut;
+    private IDocumentationProvider _documentationProvider;
     
     [SetUp]
     public void SetUp()
     {
-        _sut = new UseCaseDiagram();   
+        _documentationProvider = new NoDocumentationProvider();
+        _sut = new UseCaseDiagram(_documentationProvider);   
     }
     
     [Test]
@@ -49,41 +52,41 @@ public class UseCaseDiagramTest
     [Test]
     public void CreateDiagram_UseCaseWithMultipleActors_AddsMultipleActors()
     {
-        _sut.AddUseCase(typeof(UseCaseWithMultipleActors));
+        _sut.AddUseCase(typeof(UserAndAdminUseCase));
 
         _sut.UseCases.Count.Should().Be(1);
         _sut.Actors.Count.Should().Be(2);
         _sut.Relations.Count.Should().Be(2);
 
         _sut.Relations.Any(relation =>
-            relation.From.Identifier == "Admin" && relation.To.Identifier == "UseCaseWithMultipleActors")
+            relation.From.Identifier == "Admin" && relation.To.Identifier == "UserAndAdminUseCase")
             .Should().BeTrue();
         
         _sut.Relations.Any(relation =>
-                relation.From.Identifier == "PremiumUser" && relation.To.Identifier == "UseCaseWithMultipleActors")
+                relation.From.Identifier == "User" && relation.To.Identifier == "UserAndAdminUseCase")
             .Should().BeTrue();
     }
     
     [Test]
     public void CreateDiagram_UseCaseTriggeredByUseCase_AddsRelation()
     {
-        _sut.AddUseCase(typeof(UseCaseTriggeredByAnotherUseCase));
+        _sut.AddUseCase(typeof(UserAndUseCaseUseCase));
 
         _sut.UseCases.Count.Should().Be(2);
         _sut.Actors.Count.Should().Be(1);
         _sut.Relations.Count.Should().Be(2);
 
         _sut.Relations.Any(relation =>
-                relation.From.Identifier == "UseCaseWithOneActor" && relation.To.Identifier == "UseCaseTriggeredByAnotherUseCase")
+                relation.From.Identifier == "UserUseCase" && relation.To.Identifier == "UserAndUseCaseUseCase")
             .Should().BeTrue();
     }
     
     [Test]
     public void CreateDiagram_USeCaseWithAlreadyAddedActor_DoesNotAddActorAgain()
     {
-        _sut.AddUseCase(typeof(UseCaseWithOneActor));
+        _sut.AddUseCase(typeof(UserUseCase));
         
-        _sut.AddUseCase(typeof(UseCaseWithMultipleActors));
+        _sut.AddUseCase(typeof(UserAndAdminUseCase));
         
         _sut.Actors.Count.Should().Be(2);
     }
@@ -97,4 +100,24 @@ public class UseCaseDiagramTest
         trimmedUml.Should().Be(@"@startuml@enduml");
         trimmedUml.Should().NotBeEquivalentTo(uml);
     }
+    
+    [Actor]
+    private class User {}
+    
+    [Actor]
+    private class Admin {}
+    
+    [UseCase]
+    [TriggeredBy(typeof(User))]
+    private class UserUseCase {}
+    
+    [UseCase]
+    [TriggeredBy(typeof(User))]
+    [TriggeredBy(typeof(Admin))]
+    private class UserAndAdminUseCase {}
+    
+    [UseCase]
+    [TriggeredBy(typeof(User))]
+    [TriggeredBy(typeof(UserUseCase))]
+    private class UserAndUseCaseUseCase {}
 }

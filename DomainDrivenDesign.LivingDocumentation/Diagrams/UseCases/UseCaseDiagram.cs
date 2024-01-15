@@ -6,6 +6,7 @@ namespace DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 
 public class UseCaseDiagram
 {
+    private readonly IDocumentationProvider _documentationProvider;
     private readonly List<UseCase> _useCases = new();
     private readonly List<Actor> _actors = new();
     private readonly List<Relation> _relations = new();
@@ -14,6 +15,11 @@ public class UseCaseDiagram
     public IReadOnlyList<Actor> Actors => _actors.AsReadOnly();
     public IReadOnlyList<Relation> Relations => _relations.AsReadOnly();
 
+    public UseCaseDiagram(IDocumentationProvider documentationProvider)
+    {
+        _documentationProvider = documentationProvider;
+    }
+    
     public void AddUseCase(Type useCaseType)
     {
         var useCaseAttribute = useCaseType.GetCustomAttribute<UseCaseAttribute>()!;
@@ -23,7 +29,7 @@ public class UseCaseDiagram
             throw new NotSupportedException("Type must have a UseCaseAttribute.");
         }
         
-        var useCase = new UseCase(useCaseType.Name);
+        var useCase = UseCase.Create(useCaseType, _documentationProvider);
         
         _useCases.Add(useCase);
 
@@ -35,7 +41,8 @@ public class UseCaseDiagram
 
             if (actorType.IsActor(out var actorAttribute))
             {
-                var actor = new Actor(actorType.Name) { Stereotype = actorAttribute?.Stereotype };
+                var actor = Actor.Create(actorType, actorAttribute?.Stereotype, _documentationProvider);
+                actor.Motivation = triggeredByAttribute.Reason;
                 Add(actor);
 
                 _relations.Add(new Relation(actor, useCase));
@@ -44,7 +51,7 @@ public class UseCaseDiagram
 
             if (actorType.IsUseCase())
             {
-                var actorUseCase = new UseCase(actorType.Name);
+                var actorUseCase = UseCase.Create(actorType, _documentationProvider);
                 Add(actorUseCase);
 
                 _relations.Add(new Relation(actorUseCase, useCase));
