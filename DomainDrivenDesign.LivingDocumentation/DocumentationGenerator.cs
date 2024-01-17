@@ -47,24 +47,26 @@ public class DocumentationGenerator
         sb.AppendLine(imageLink);
         sb.AppendLine();
 
-        if (diagram.Actors.Count > 0)
+        if (diagram.Relations.Count > 0)
         {
             sb.AppendLine("## Actors");
-            foreach (var actor in diagram.Actors)
+            foreach (var relation in diagram.Relations)
             {
-                sb.AppendLine("### " + actor.Title);
+                var executor = relation.From;
+                
+                sb.AppendLine("### " + executor.Title);
 
-                if (actor.HasDocumentation)
+                if (executor.HasDocumentation)
                 {
-                    sb.AppendLine(_documentationFormatter.Format(actor.Documentation));
+                    sb.AppendLine(_documentationFormatter.Format(executor.Documentation));
                 }
 
-                if (actor.HasMotive)
+                if (relation.HasMotive)
                 {
                     sb.AppendLine();
                     sb.AppendLine("**Reason for executing the use case:**");
                     sb.AppendLine();
-                    sb.AppendLine($"\t{actor.Motivation.Replace("\n", "\t")}");
+                    sb.AppendLine($"\t{relation.Motivation!.Replace("\n", "\t")}");
                     sb.AppendLine();
                 }
             }

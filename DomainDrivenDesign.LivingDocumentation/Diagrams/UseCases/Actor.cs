@@ -24,8 +24,6 @@ public class Actor : DiagramObject
     }
 
     public string? Stereotype { get; set; }
-    public string? Motivation { get; set; }
-    public bool HasMotive => Motivation != null;
 
     public override string ToPlantUml()
     {

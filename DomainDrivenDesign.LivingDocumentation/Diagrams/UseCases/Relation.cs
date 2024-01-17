@@ -16,6 +16,9 @@ public class Relation : DiagramObject
     
     public DiagramObject From { get; }
     public DiagramObject To { get; }
+    
+    public string? Motivation { get; set; }
+    public bool HasMotive => Motivation != null;
 
     public override string ToPlantUml()
     {

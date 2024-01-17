@@ -42,20 +42,20 @@ public class UseCaseDiagram
             if (actorType.IsActor(out var actorAttribute))
             {
                 var actor = Actor.Create(actorType, actorAttribute?.Stereotype, _documentationProvider);
-                actor.Motivation = triggeredByAttribute.Reason;
                 Add(actor);
 
-                _relations.Add(new Relation(actor, useCase));
-                continue;
-            }
+                var relation = new Relation(actor, useCase) { Motivation = triggeredByAttribute.Reason };
 
-            if (actorType.IsUseCase())
+                _relations.Add(relation);
+            }
+            else if (actorType.IsUseCase())
             {
                 var actorUseCase = UseCase.Create(actorType, _documentationProvider);
                 Add(actorUseCase);
+                
+                var relation = new Relation(actorUseCase, useCase) { Motivation = triggeredByAttribute.Reason };
 
-                _relations.Add(new Relation(actorUseCase, useCase));
-                continue;
+                _relations.Add(relation);
             }
         }
     }
