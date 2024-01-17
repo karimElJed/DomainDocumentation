@@ -1,0 +1,20 @@
+@startuml
+
+actor "CMS" <<Application>> as CMS
+actor "Admin" as Admin
+actor "Premium User" as PremiumUser
+
+"Use Case Triggered By Another Use Case" as (UseCaseTriggeredByAnotherUseCase)
+"Use Case With One Actor" as (UseCaseWithOneActor)
+"Use Case With Multiple Actors" as (UseCaseWithMultipleActors)
+"Use Case With One Actor" as (UseCaseWithOneActor)
+"Use Case Without Actor" as (UseCaseWithoutActor)
+
+(UseCaseWithOneActor) --> (UseCaseTriggeredByAnotherUseCase)
+CMS --> (UseCaseTriggeredByAnotherUseCase)
+Admin --> (UseCaseWithMultipleActors)
+PremiumUser --> (UseCaseWithMultipleActors)
+CMS --> (UseCaseWithMultipleActors)
+Admin --> (UseCaseWithOneActor)
+
+@enduml

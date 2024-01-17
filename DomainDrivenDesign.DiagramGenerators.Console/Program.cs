@@ -1,8 +1,10 @@
 ﻿using System.Reflection;
+using System.Text;
 using DomainDrivenDesign.Core.Attributes;
 using DomainDrivenDesign.DiagramGenerators;
 using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 using DomainDrivenDesign.SampleDomain;
+using PlantUML.TextEncoder;
 
 var assembly = typeof(UseCaseWithMultipleActors).Assembly;
 var provider = DocumentationProvider.FromAssembly(assembly);
@@ -23,5 +25,12 @@ foreach (var useCaseType in useCases)
 var diagramGenerator = new UseCaseDiagramGenerator(assembly, provider);
 var diagram = diagramGenerator.CreateDiagramForAllUseCases();
 var uml = diagram.ToPlantUml();
-File.WriteAllText("all_usecases.puml", uml);
+File.WriteAllText("../../../../docs/all_usecases.puml", uml);
+
+var imgParameter = PlantUmlTextEncoder.Encode(uml);
+
+var markdown = new StringBuilder();
+markdown.AppendLine("# All Use Cases");
+markdown.AppendLine($"<img src=\"https://www.plantuml.com/plantuml/svg/{imgParameter}\"/>");
+File.WriteAllText("../../../../docs/all_usecases.md", markdown.ToString());
 Console.WriteLine(uml);
