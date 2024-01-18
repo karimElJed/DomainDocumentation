@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using System.Xml;
+using DomainDrivenDesign.DiagramGenerators.Utils;
 
 namespace DomainDrivenDesign.DiagramGenerators.Diagrams;
 
@@ -29,8 +30,8 @@ public abstract class DiagramObject
 
     public abstract string ToPlantUml();
     
-    protected string IdentifierToTitle(string identifier)
+    private static string IdentifierToTitle(string identifier)
     {
-        return Regex.Replace(identifier, "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", " $1");
+        return TextUtils.ReplaceDotsWithWhitespaces(identifier);
     }
 }

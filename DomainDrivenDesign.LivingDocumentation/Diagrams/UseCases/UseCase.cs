@@ -12,7 +12,9 @@ public class UseCase : DiagramObject
     public static UseCase Create(Type implementingType, IDocumentationProvider documentationProvider)
     {
         var useCase = new UseCase(implementingType)
-            { Documentation = documentationProvider.GetDocumentation(implementingType) };
+        {
+            Documentation = documentationProvider.GetDocumentation(implementingType)
+        };
 
         return useCase;
     }
