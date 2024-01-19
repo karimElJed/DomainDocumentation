@@ -1,6 +1,6 @@
 using DomainDrivenDesign.Core.Attributes;
 
-namespace DomainDrivenDesign.SampleDomain;
+namespace DomainDrivenDesign.SampleDomain.ImportantPart.UseCases;
 
 /// <summary>
 /// This use case is relevant for two different kind of users.

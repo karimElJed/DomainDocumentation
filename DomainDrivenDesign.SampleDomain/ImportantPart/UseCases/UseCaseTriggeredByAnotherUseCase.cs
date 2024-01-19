@@ -1,6 +1,6 @@
 using DomainDrivenDesign.Core.Attributes;
 
-namespace DomainDrivenDesign.SampleDomain;
+namespace DomainDrivenDesign.SampleDomain.ImportantPart.UseCases;
 
 [UseCase]
 [TriggeredBy(typeof(UseCaseWithOneActor), Reason = "All new customers will be subscribed to the newsletter automatically.")]

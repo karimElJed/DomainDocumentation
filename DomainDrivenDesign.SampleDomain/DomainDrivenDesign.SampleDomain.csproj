@@ -18,4 +18,6 @@
       <ProjectReference Include="..\DomainDrivenDesign.Core\DomainDrivenDesign.Core.csproj" />
     </ItemGroup>
 
+
+
 </Project>

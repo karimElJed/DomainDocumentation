@@ -1,6 +1,6 @@
 using DomainDrivenDesign.Core.Attributes;
 
-namespace DomainDrivenDesign.SampleDomain;
+namespace DomainDrivenDesign.SampleDomain.ImportantPart.UseCases;
 
 /// <summary>
 /// This is a special use case for the admin only.

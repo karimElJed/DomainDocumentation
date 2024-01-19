@@ -4,7 +4,7 @@ using DomainDrivenDesign.Core.Attributes;
 using DomainDrivenDesign.DiagramGenerators;
 using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 using DomainDrivenDesign.DiagramGenerators.Utils;
-using DomainDrivenDesign.SampleDomain;
+using DomainDrivenDesign.SampleDomain.ImportantPart.UseCases;
 using PlantUML.TextEncoder;
 
 var assembly = typeof(UseCaseWithMultipleActors).Assembly;
@@ -17,12 +17,19 @@ var useCaseGroups = assembly.GetTypes()
     .GroupBy(t => t.Namespace);
 
 var documentationPath = Path.Combine("..", "..", "..", "..", "docs");
+var rootNamespace = "DomainDrivenDesign";
 
 foreach (var useCaseGroup in useCaseGroups)
 {
     var links = new List<string>();
-    var topic = useCaseGroup.Key?.Split('.').Last() ?? "";
-    var savePath = Path.Combine(documentationPath, topic, "useCases");
+    var namespacePath = useCaseGroup.Key.Replace(rootNamespace, "").Split('.');
+    var topic = namespacePath.Last() ?? "";
+    var savePath = documentationPath;
+    
+    foreach (var path in namespacePath)
+    {
+        savePath = Path.Combine(savePath, path);
+    }
     
     if (!Directory.Exists(savePath))
     {

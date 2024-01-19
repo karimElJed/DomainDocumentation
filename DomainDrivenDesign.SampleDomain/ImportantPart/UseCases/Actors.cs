@@ -1,7 +1,8 @@
 ﻿using DomainDrivenDesign.Core.Attributes;
+
 // ReSharper disable InconsistentNaming
 
-namespace DomainDrivenDesign.SampleDomain;
+namespace DomainDrivenDesign.SampleDomain.ImportantPart.UseCases;
 
 public static class Actors
 {

@@ -1,6 +1,6 @@
 using DomainDrivenDesign.Core.Attributes;
 
-namespace DomainDrivenDesign.SampleDomain;
+namespace DomainDrivenDesign.SampleDomain.ImportantPart.UseCases;
 
 /// <summary>
 /// No one wants to execute this use case.
