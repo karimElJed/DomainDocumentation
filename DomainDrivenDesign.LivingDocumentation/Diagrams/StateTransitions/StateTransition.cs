@@ -1,17 +1,21 @@
-namespace DomainDrivenDesign.DiagramGenerators.Diagrams.States;
+namespace DomainDrivenDesign.DiagramGenerators.Diagrams.StateTransitions;
 
 internal class StateTransition : DiagramObject
 {
-    public StateTransition(Type implementingType) : base(implementingType)
+    public StateTransition(State from, State to, string? trigger) : base("")
     {
+        From = from;
+        To = to;
+        Trigger = trigger;
     }
 
-    public StateTransition(string identifier) : base(identifier)
-    {
-    }
-
+    public State From { get; }
+    public State To { get; }
+    public string? Trigger { get; }
+    
     public override string ToPlantUml()
     {
-        return "todo";
+        var trigger = string.IsNullOrWhiteSpace(Trigger) ? "" : $" : {Trigger}";
+        return $"{From.Identifier} --> {To.Identifier}{trigger}";
     }
 }

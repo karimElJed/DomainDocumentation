@@ -4,7 +4,7 @@ using DomainDrivenDesign.Core.Attributes;
 
 namespace DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 
-public class UseCaseDiagram
+public class UseCaseDiagram : DiagramBase
 {
     private readonly IDocumentationProvider _documentationProvider;
     private readonly List<UseCase> _useCases = new();
@@ -60,7 +60,7 @@ public class UseCaseDiagram
         }
     }
 
-    public string ToPlantUml()
+    public override string ToPlantUml()
     {
         var sb = new StringBuilder();
 
@@ -74,19 +74,6 @@ public class UseCaseDiagram
         sb.Append("@enduml");
         
         return sb.ToString();
-    }
-
-    private void RenderAsPlantUml(StringBuilder sb, int indent, IEnumerable<DiagramObject> objects)
-    {
-        var indentation = new string('\t', indent);
-        
-        foreach (var @object in objects)
-        {
-            sb.Append(indentation);
-            sb.AppendLine( @object.ToPlantUml());
-        }
-        
-        sb.AppendLine();
     }
     
     private void Add(Actor actor)

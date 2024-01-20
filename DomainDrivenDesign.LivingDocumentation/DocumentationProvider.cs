@@ -36,6 +36,15 @@ public class DocumentationProvider : IDocumentationProvider
         return xmlNode;
     }
     
+    public XmlNode? GetDocumentation(FieldInfo fieldInfo)
+    {
+        var fullName = fieldInfo.FieldType.FullName + "." + fieldInfo.Name;
+        var key = "F:" + CreateKey(fullName, null);
+        var xmlNode = _xmlDocumentation.SelectSingleNode($"/doc/members/member[@name=\"{key}\"]");
+
+        return xmlNode;
+    }
+    
     // Helper method to format the key strings
     private static string CreateKey(string typeFullNameString, string? memberNameString)
     {

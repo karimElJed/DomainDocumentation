@@ -9,3 +9,8 @@ This is a special use case for the admin only.
 ## Actors
 ### Admin
 The administrator of the application. This kind of users have god mode permissions and can do whatever they want.
+
+**Reason for executing the use case:**
+
+	The admin wants to do something.
+

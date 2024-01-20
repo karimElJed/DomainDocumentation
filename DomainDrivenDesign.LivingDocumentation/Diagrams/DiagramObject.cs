@@ -24,7 +24,7 @@ public abstract class DiagramObject
     
     public Type ImplementingType { get; }
     
-    public XmlNode? Documentation { get; protected set; }
+    public XmlNode? Documentation { get; init; }
 
     public bool HasDocumentation => Documentation != null;
 

@@ -2,8 +2,10 @@
 using System.Text;
 using DomainDrivenDesign.Core.Attributes;
 using DomainDrivenDesign.DiagramGenerators;
+using DomainDrivenDesign.DiagramGenerators.Diagrams.StateTransitions;
 using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 using DomainDrivenDesign.DiagramGenerators.Utils;
+using DomainDrivenDesign.SampleDomain.ImportantPart;
 using DomainDrivenDesign.SampleDomain.ImportantPart.UseCases;
 using PlantUML.TextEncoder;
 
@@ -62,4 +64,11 @@ foreach (var useCaseGroup in useCaseGroups)
     
     File.WriteAllText(Path.Combine(savePath, "_Index.md"), markdown.ToString());
     Console.WriteLine(uml);
+    
+    var stateDiagram = new StateDiagram(provider);
+    stateDiagram.AddStates(typeof(ActivationState));
+    uml = stateDiagram.ToPlantUml();
+    
+    File.WriteAllText(Path.Combine(savePath, $"{nameof(ActivationState)}.puml"), uml);
+    Console.Write(uml);
 }

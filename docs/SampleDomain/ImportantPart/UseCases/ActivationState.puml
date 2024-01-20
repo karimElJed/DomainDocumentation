@@ -1,0 +1,20 @@
+@startuml
+
+top to bottom direction
+hide empty description
+state "Confirmation Pending" as ConfirmationPending : The invoice needs to be confirmed by the customer.
+
+state "Second Confirmation Pending" as SecondConfirmationPending : The invoice was confirmed by the 1st approver
+state "Second Confirmation Pending" as SecondConfirmationPending : and waits for confirmation of the 2nd approver.
+
+Confirmed : The invoice was confirmed by the customer
+Confirmed : and can be debited.
+
+
+ConfirmationPending --> Confirmed : Confirmed (1-Step Approval)
+ConfirmationPending --> SecondConfirmationPending : Confirmed (2-Step Approval)
+SecondConfirmationPending --> Confirmed : Confirmed (2-Step Approval)
+[*] --> ConfirmationPending
+Confirmed --> [*]
+
+@enduml
