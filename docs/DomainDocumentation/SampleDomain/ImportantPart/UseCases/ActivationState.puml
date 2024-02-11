@@ -1,0 +1,18 @@
+@startuml
+
+top to bottom direction
+hide empty description
+state "Confirmation Pending" as ConfirmationPending : The order needs to be confirmed by the supervisor.
+
+state "Confirmation In Process" as ConfirmationInProcess : The order was confirmed by the supervisor
+state "Confirmation In Process" as ConfirmationInProcess : and is being processed by the system.
+
+Confirmed : The order was successfully processed by the system.
+
+
+ConfirmationPending --> ConfirmationInProcess : Confirmed
+ConfirmationInProcess --> Confirmed : Process finished
+[*] --> ConfirmationPending
+Confirmed --> [*]
+
+@enduml
