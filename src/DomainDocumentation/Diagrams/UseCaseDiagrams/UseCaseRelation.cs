@@ -1,14 +1,14 @@
 namespace DomainDocumentation.Diagrams.UseCaseDiagrams;
 
-public class Relation : DiagramObject
+public class UseCaseRelation : DiagramObject
 {
-    public Relation(Actor from, UseCase to) : base($"{from.Identifier}_{to.Identifier}")
+    public UseCaseRelation(Actor from, UseCase to) : base($"{from.Identifier}_{to.Identifier}")
     {
         From = from;
         To = to;
     }
     
-    public Relation(UseCase from, UseCase to) : base($"{from.Identifier}_{to.Identifier}")
+    public UseCaseRelation(UseCase from, UseCase to) : base($"{from.Identifier}_{to.Identifier}")
     {
         From = from;
         To = to;

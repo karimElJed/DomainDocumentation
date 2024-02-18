@@ -9,11 +9,11 @@ public class UseCaseDiagram : DiagramBase
     private readonly IDocumentationProvider _documentationProvider;
     private readonly List<UseCase> _useCases = new();
     private readonly List<Actor> _actors = new();
-    private readonly List<Relation> _relations = new();
+    private readonly List<UseCaseRelation> _relations = new();
     
     public IReadOnlyList<UseCase> UseCases => _useCases.AsReadOnly();
     public IReadOnlyList<Actor> Actors => _actors.AsReadOnly();
-    public IReadOnlyList<Relation> Relations => _relations.AsReadOnly();
+    public IReadOnlyList<UseCaseRelation> Relations => _relations.AsReadOnly();
 
     public UseCaseDiagram(IDocumentationProvider documentationProvider)
     {
@@ -44,7 +44,7 @@ public class UseCaseDiagram : DiagramBase
                 var actor = Actor.Create(actorType, actorAttribute?.Stereotype, _documentationProvider);
                 Add(actor);
 
-                var relation = new Relation(actor, useCase) { Motivation = triggeredByAttribute.Reason };
+                var relation = new UseCaseRelation(actor, useCase) { Motivation = triggeredByAttribute.Reason };
 
                 _relations.Add(relation);
             }
@@ -53,7 +53,7 @@ public class UseCaseDiagram : DiagramBase
                 var actorUseCase = UseCase.Create(actorType, _documentationProvider);
                 Add(actorUseCase);
                 
-                var relation = new Relation(actorUseCase, useCase) { Motivation = triggeredByAttribute.Reason };
+                var relation = new UseCaseRelation(actorUseCase, useCase) { Motivation = triggeredByAttribute.Reason };
 
                 _relations.Add(relation);
             }

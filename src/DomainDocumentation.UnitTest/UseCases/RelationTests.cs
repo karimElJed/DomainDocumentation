@@ -11,7 +11,7 @@ public class RelationTests
     [Test]
     public void ToPlantUml_ReturnsValidUml()
     {
-        var sut = new Relation(Actor.Create(typeof(Actors.PremiumUser)), UseCase.Create(typeof(UseCaseWithOneActor)));
+        var sut = new UseCaseRelation(Actor.Create(typeof(Actors.PremiumUser)), UseCase.Create(typeof(UseCaseWithOneActor)));
 
         var uml = sut.ToPlantUml();
 

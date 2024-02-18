@@ -1,0 +1,12 @@
+@startuml
+class FancyAggregate {
+	FancyId : Int32
+	Child : FancyEntity
+}
+
+class FancyEntity {
+	Identifier : String
+}
+
+
+FancyAggregate --> FancyEntity : FancyEntity
