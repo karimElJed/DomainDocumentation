@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace DomainDrivenDesign.DiagramGenerators.Diagrams;
+namespace DomainDocumentation.Diagrams;
 
 public abstract class DiagramBase
 {

@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace DomainDrivenDesign.DiagramGenerators;
+namespace DomainDocumentation;
 
 public class DocumentationProvider : IDocumentationProvider
 {

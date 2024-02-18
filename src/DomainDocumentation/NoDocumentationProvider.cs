@@ -1,6 +1,6 @@
 using System.Xml;
 
-namespace DomainDrivenDesign.DiagramGenerators;
+namespace DomainDocumentation;
 
 public class NoDocumentationProvider : IDocumentationProvider
 {

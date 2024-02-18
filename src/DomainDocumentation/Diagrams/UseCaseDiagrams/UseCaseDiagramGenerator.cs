@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using DomainDocumentation.Attributes;
 
-namespace DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
+namespace DomainDocumentation.Diagrams.UseCaseDiagrams;
 
 public class UseCaseDiagramGenerator
 {

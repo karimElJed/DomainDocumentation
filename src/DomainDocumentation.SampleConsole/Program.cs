@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
 using System.Text;
+using DomainDocumentation;
 using DomainDocumentation.Attributes;
+using DomainDocumentation.Diagrams.StateDiagrams;
+using DomainDocumentation.Diagrams.UseCaseDiagrams;
 using DomainDocumentation.SampleDomain.ImportantPart;
 using DomainDocumentation.SampleDomain.ImportantPart.UseCases;
-using DomainDrivenDesign.DiagramGenerators;
-using DomainDrivenDesign.DiagramGenerators.Diagrams.StateTransitions;
-using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
-using DomainDrivenDesign.DiagramGenerators.Utils;
+using DomainDocumentation.Utils;
 using PlantUML.TextEncoder;
 
 var assembly = typeof(UseCaseWithMultipleActors).Assembly;

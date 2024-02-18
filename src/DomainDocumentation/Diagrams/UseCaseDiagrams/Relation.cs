@@ -1,4 +1,4 @@
-namespace DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
+namespace DomainDocumentation.Diagrams.UseCaseDiagrams;
 
 public class Relation : DiagramObject
 {

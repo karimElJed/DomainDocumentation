@@ -1,8 +1,8 @@
 using System.Text;
-using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
+using DomainDocumentation.Diagrams.UseCaseDiagrams;
 using PlantUML.TextEncoder;
 
-namespace DomainDrivenDesign.DiagramGenerators;
+namespace DomainDocumentation;
 
 public class DocumentationGenerator
 {

@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace DomainDrivenDesign.DiagramGenerators.Diagrams.StateTransitions;
+namespace DomainDocumentation.Diagrams.StateDiagrams;
 
 public class State : DiagramObject
 {

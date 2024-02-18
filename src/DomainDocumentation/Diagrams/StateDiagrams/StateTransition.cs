@@ -1,4 +1,4 @@
-namespace DomainDrivenDesign.DiagramGenerators.Diagrams.StateTransitions;
+namespace DomainDocumentation.Diagrams.StateDiagrams;
 
 internal class StateTransition : DiagramObject
 {

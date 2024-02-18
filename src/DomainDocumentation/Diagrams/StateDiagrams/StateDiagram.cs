@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Text;
 using DomainDocumentation.Attributes;
 
-namespace DomainDrivenDesign.DiagramGenerators.Diagrams.StateTransitions;
+namespace DomainDocumentation.Diagrams.StateDiagrams;
 
 public class StateDiagram : DiagramBase
 {

@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace DomainDrivenDesign.DiagramGenerators.Utils;
+namespace DomainDocumentation.Utils;
 
 public static class TextUtils
 {

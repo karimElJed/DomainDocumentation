@@ -1,8 +1,7 @@
-using System.Text.RegularExpressions;
 using System.Xml;
-using DomainDrivenDesign.DiagramGenerators.Utils;
+using DomainDocumentation.Utils;
 
-namespace DomainDrivenDesign.DiagramGenerators.Diagrams;
+namespace DomainDocumentation.Diagrams;
 
 public abstract class DiagramObject
 {

@@ -1,9 +1,8 @@
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
-using Microsoft.VisualBasic.CompilerServices;
 
-namespace DomainDrivenDesign.DiagramGenerators;
+namespace DomainDocumentation;
 
 public class DocumentationFormatter
 {

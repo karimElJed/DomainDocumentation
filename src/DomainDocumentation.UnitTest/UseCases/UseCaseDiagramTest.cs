@@ -1,7 +1,6 @@
 using DomainDocumentation.Attributes;
+using DomainDocumentation.Diagrams.UseCaseDiagrams;
 using DomainDocumentation.SampleDomain.ImportantPart.UseCases;
-using DomainDrivenDesign.DiagramGenerators;
-using DomainDrivenDesign.DiagramGenerators.Diagrams.UseCases;
 using FluentAssertions;
 using NUnit.Framework;
 
