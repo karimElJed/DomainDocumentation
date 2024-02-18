@@ -1,6 +1,6 @@
 using DomainDocumentation.Attributes;
 using DomainDocumentation.Diagrams.UseCaseDiagrams;
-using DomainDocumentation.SampleDomain.ImportantPart.UseCases;
+using DomainDocumentation.UnitTest.TestDomain;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -9,8 +9,8 @@ namespace DomainDocumentation.UnitTest.UseCases;
 [TestFixture]
 public class UseCaseDiagramTest
 {
-    private UseCaseDiagram _sut;
-    private IDocumentationProvider _documentationProvider;
+    private UseCaseDiagram _sut = null!;
+    private IDocumentationProvider _documentationProvider = null!;
     
     [SetUp]
     public void SetUp()

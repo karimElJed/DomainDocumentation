@@ -1,4 +1,4 @@
-using DomainDocumentation.SampleDomain.ImportantPart.UseCases;
+using DomainDocumentation.UnitTest.TestDomain;
 using FluentAssertions;
 using NUnit.Framework;
 

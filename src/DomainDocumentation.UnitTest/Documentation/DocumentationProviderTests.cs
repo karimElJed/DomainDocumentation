@@ -1,4 +1,4 @@
-using DomainDocumentation.SampleDomain.ImportantPart.UseCases;
+using DomainDocumentation.UnitTest.TestDomain;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -20,6 +20,6 @@ public class DocumentationProviderTests
     {
         var result = _sut.GetDocumentation(typeof(UseCaseWithMultipleActors));
 
-        result.InnerText.Should().NotBeEmpty();
+        result!.InnerText.Should().NotBeEmpty();
     }
 }
