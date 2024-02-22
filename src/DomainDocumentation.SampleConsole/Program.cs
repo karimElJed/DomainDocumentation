@@ -5,12 +5,12 @@ using DomainDocumentation.Attributes;
 using DomainDocumentation.Diagrams.ClassDiagrams;
 using DomainDocumentation.Diagrams.StateDiagrams;
 using DomainDocumentation.Diagrams.UseCaseDiagrams;
-using DomainDocumentation.SampleDomain.ImportantPart;
-using DomainDocumentation.SampleDomain.ImportantPart.UseCases;
+using DomainDocumentation.SampleDomain.Documenting;
+using DomainDocumentation.SampleDomain.Documenting.UseCases;
 using DomainDocumentation.Utils;
 using PlantUML.TextEncoder;
 
-var assembly = typeof(UseCaseWithMultipleActors).Assembly;
+var assembly = typeof(GenerateDocumentation).Assembly;
 var provider = DocumentationProvider.FromAssembly(assembly);
 var formatter = DocumentationFormatter.ForDefaultMarkdown();
 var generator = new DocumentationGenerator(provider, formatter);
@@ -68,14 +68,14 @@ foreach (var useCaseGroup in useCaseGroups)
 
     // Just playing around from here on
     var stateDiagram = new StateDiagram(provider);
-    stateDiagram.AddStates(typeof(ActivationState));
+    stateDiagram.AddStates(typeof(DocumentationState));
     uml = stateDiagram.ToPlantUml();
-    File.WriteAllText(Path.Combine(savePath, $"{nameof(ActivationState)}.puml"), uml);
+    File.WriteAllText(Path.Combine(savePath, $"{nameof(DocumentationState)}.puml"), uml);
     Console.Write(uml);
 
     var classDiagram = new ClassDiagram();
-    classDiagram.AddClass(typeof(FancyAggregate));
+    classDiagram.AddClass(typeof(DocumentationDocument));
     uml = classDiagram.ToPlantUml();
-    File.WriteAllText(Path.Combine(savePath, $"{nameof(FancyAggregate)}.puml"), uml);
+    File.WriteAllText(Path.Combine(savePath, $"{nameof(DocumentationDocument)}.puml"), uml);
     Console.Write(uml);
 }

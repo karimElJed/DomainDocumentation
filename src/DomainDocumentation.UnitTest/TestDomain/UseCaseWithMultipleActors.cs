@@ -1,5 +1,4 @@
 using DomainDocumentation.Attributes;
-using DomainDocumentation.SampleDomain.ImportantPart.UseCases;
 
 namespace DomainDocumentation.UnitTest.TestDomain;
 
