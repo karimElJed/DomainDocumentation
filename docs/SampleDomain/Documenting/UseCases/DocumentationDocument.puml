@@ -1,0 +1,12 @@
+@startuml
+class DocumentationDocument {
+	Id : Int32
+	Child : TableOfContent
+}
+
+class TableOfContent {
+	Sections : List`1
+}
+
+
+DocumentationDocument --> TableOfContent : TableOfContent

@@ -1,0 +1,25 @@
+@startuml
+
+top to bottom direction
+hide empty description
+Draft : The source code changed and the documentation was updated.
+
+state "In Review" as InReview : The reviewer started the review process.
+
+Commented : The reviewer has open questions or found issues in the documentation.
+
+Fixed : Open questions and issues have been resolved by the developer.
+
+Approved : The documentation is clear and complete and can be used by the team.
+
+
+Draft --> InReview : Pull Request created
+InReview --> Commented : Lack of clarity
+InReview --> Approved : Documentation is clear and complete
+Commented --> Fixed : The developer updated the documentation.
+Fixed --> Approved : Reviewer is satisfied with the changes.
+Fixed --> Commented : Reviewer still has questions or proposals for changes.
+[*] --> Draft
+Approved --> [*]
+
+@enduml
