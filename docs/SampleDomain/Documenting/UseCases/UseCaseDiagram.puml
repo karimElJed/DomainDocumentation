@@ -1,0 +1,45 @@
+@startuml
+class UseCaseDiagram {
+}
+
+class UseCase {
+	Identifier : String
+	Title : String
+	ImplementingType : Type
+	Documentation : XmlNode
+	HasDocumentation : Boolean
+}
+
+class Actor {
+	Stereotype : String
+	Identifier : String
+	Title : String
+	ImplementingType : Type
+	Documentation : XmlNode
+	HasDocumentation : Boolean
+}
+
+class UseCaseRelation {
+	Motivation : String
+	HasMotive : Boolean
+	Identifier : String
+	Title : String
+	ImplementingType : Type
+	Documentation : XmlNode
+	HasDocumentation : Boolean
+}
+
+class DiagramObject {
+	Identifier : String
+	Title : String
+	ImplementingType : Type
+	Documentation : XmlNode
+	HasDocumentation : Boolean
+}
+
+
+UseCaseDiagram "1" --> "*" UseCase : UseCases
+UseCaseDiagram "1" --> "*" Actor : Actors
+UseCaseDiagram "1" --> "*" UseCaseRelation : Relations
+UseCaseRelation --> DiagramObject : From
+UseCaseRelation --> DiagramObject : To

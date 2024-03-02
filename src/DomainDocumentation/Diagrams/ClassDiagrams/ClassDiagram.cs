@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text;
 
 namespace DomainDocumentation.Diagrams.ClassDiagrams;
@@ -6,27 +7,32 @@ public class ClassDiagram : DiagramBase
 {
     private readonly List<Class> _classes = new();
     private readonly List<ClassRelation> _relations = new();
+    private readonly Class _root;
 
-    public void AddClass(Type classType)
+    public ClassDiagram(Type rootClass)
     {
-        var classObject = new Class(classType);
-        _classes.Add(classObject);
+        _root = new Class(rootClass);
 
-        foreach (var property in classObject.Properties)
+        Traverse(_root);
+    }
+
+    private void Traverse(Class current)
+    {
+        AddClass(current);
+        foreach (var property in current.Properties)
         {
-            if (!property.PropertyType.Assembly.FullName!.StartsWith("System."))
+            if (property.HasRelation)
             {
-                var relatedClass = new Class(property.PropertyType);
-                _classes.Add(relatedClass);
-
-                var relation = new ClassRelation(
-                    classObject,
-                    relatedClass,
-                    property.PropertyType.Name,
-                    relatedClass.IsArray ? RelationType.OneToMany : RelationType.OneToOne);
-                
-                _relations.Add(relation);
+                Traverse(property.Relation.To);
             }
+        }
+    }
+
+    private void AddClass(Class classToAdd)
+    {
+        if (!_classes.Exists(c => c.ImplementingType == classToAdd.ImplementingType))
+        {
+            _classes.Add(classToAdd);
         }
     }
 
@@ -42,9 +48,15 @@ public class ClassDiagram : DiagramBase
 
         sb.AppendLine();
 
-        foreach (var relation in _relations)
+        foreach (var classDefinition in _classes)
         {
-            relation.ToPlantUml(sb);
+            foreach (var property in classDefinition.Properties)
+            {
+                if (property.HasRelation)
+                {
+                    property.Relation.ToPlantUml(sb);
+                }
+            }
         }
         
         return sb.ToString();

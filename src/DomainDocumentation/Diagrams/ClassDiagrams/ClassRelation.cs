@@ -22,9 +22,9 @@ public class ClassRelation
 
     public void ToPlantUml(StringBuilder sb)
     {
-        var relationRight = _relationType == RelationType.OneToMany ? "\"many\" " : "";
-        sb.AppendLine($"{From.Name} --> {relationRight}{To.Name} : {RelationName}");
-        
+        var relationFrom = _relationType == RelationType.OneToMany ? "\"1\" " : "";
+        var relationTo = _relationType == RelationType.OneToMany ? "\"*\" " : "";
+        sb.AppendLine($"{From.Name} {relationFrom}--> {relationTo}{To.Name} : {RelationName}");
     }
 }
 

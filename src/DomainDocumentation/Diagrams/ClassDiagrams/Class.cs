@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text;
 
 namespace DomainDocumentation.Diagrams.ClassDiagrams;
@@ -9,10 +10,22 @@ public class Class : DiagramObject
 
     public Class(Type classType) : base(classType)
     {
-        IsArray = classType.IsArray;
-        _type = IsArray ? classType.GetElementType()! : classType;
-        
+        _type = classType;
         Name = _type.Name;
+        
+        if (classType.IsArray)
+        {
+            _type = IsArray ? classType.GetElementType()! : classType;
+            IsArray = true;
+        }
+        else if (classType.IsGenericType)
+        {
+            if (typeof(IEnumerable).IsAssignableFrom(classType))
+            {
+                _type = classType.GenericTypeArguments[0];
+                IsArray = true;
+            }
+        }
 
         InitializeProperties();
     }
@@ -42,9 +55,36 @@ public class Class : DiagramObject
     private void InitializeProperties()
     {
         var properties = _type.GetProperties();
-        foreach (var propertyInfo in properties)
+        foreach (var property in properties)
         {
-            _properties.Add(new Property(propertyInfo));
+            bool isOneToManyRelation = false;
+
+            var typeOfReference = property.PropertyType;
+            if (property.PropertyType.IsGenericType)
+            {
+                typeOfReference = property.PropertyType.GenericTypeArguments[0];
+
+                if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType))
+                {
+                    isOneToManyRelation = true;
+                }
+            }
+
+            if (typeOfReference.Assembly.FullName!.StartsWith("System."))
+            {
+                // No need to add system types to diagram
+                _properties.Add(new Property(property));
+                continue;
+            }
+
+            var relatedClass = new Class(typeOfReference);
+            var relation = new ClassRelation(
+                this,
+                relatedClass,
+                property.Name,
+                relatedClass.IsArray || isOneToManyRelation ? RelationType.OneToMany : RelationType.OneToOne);
+
+            _properties.Add(new Property(property, relation));
         }
     }
 }
