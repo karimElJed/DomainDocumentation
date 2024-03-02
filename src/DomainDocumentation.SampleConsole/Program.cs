@@ -72,9 +72,15 @@ foreach (var useCaseGroup in useCaseGroups)
     uml = stateDiagram.ToPlantUml();
     File.WriteAllText(Path.Combine(savePath, $"{nameof(DocumentationState)}.puml"), uml);
     Console.Write(uml);
+    
+    CreateClassDiagram(typeof(UseCaseDiagram), savePath);
+    CreateClassDiagram(typeof(StateDiagram), savePath);
+}
 
-    var classDiagram = new ClassDiagram(typeof(UseCaseDiagram));
-    uml = classDiagram.ToPlantUml();
-    File.WriteAllText(Path.Combine(savePath, $"{nameof(UseCaseDiagram)}.puml"), uml);
+void CreateClassDiagram(Type typeofDiagram, string savePath)
+{
+    var classDiagram = new ClassDiagram(typeofDiagram);
+    string uml = classDiagram.ToPlantUml();
+    File.WriteAllText(Path.Combine(savePath, $"{typeofDiagram.Name}.puml"), uml);
     Console.Write(uml);
 }

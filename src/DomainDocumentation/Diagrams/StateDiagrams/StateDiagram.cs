@@ -6,8 +6,8 @@ namespace DomainDocumentation.Diagrams.StateDiagrams;
 
 public class StateDiagram : DiagramBase
 {
-    private List<State> _states;
-    private List<StateTransition> _transitions;
+    private readonly List<State> _states;
+    private readonly List<StateTransition> _transitions;
     private readonly DocumentationProvider _documentationProvider;
 
     public StateDiagram(DocumentationProvider documentationProvider)
@@ -16,6 +16,10 @@ public class StateDiagram : DiagramBase
         _states = new List<State>();
         _transitions = new List<StateTransition>();
     }
+
+    public IReadOnlyList<State> States { get; set; }
+    public IReadOnlyList<StateTransition> StateTransitions { get; set; }
+    
     
     public void AddStates(Type enumType)
     {

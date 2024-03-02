@@ -1,0 +1,31 @@
+@startuml
+class StateDiagram {
+}
+
+class DiagramBase {
+}
+
+class State {
+}
+
+class DiagramObject {
+	Documentation : XmlNode
+	HasDocumentation : Boolean
+	Identifier : String
+	ImplementingType : Type
+	Title : String
+}
+
+class StateTransition {
+	Trigger : String
+}
+
+
+DiagramBase <|-- StateDiagram
+DiagramObject <|-- State
+DiagramObject <|-- StateTransition
+
+StateDiagram "1" ---> "*" State : States
+StateDiagram "1" ---> "*" StateTransition : StateTransitions
+StateTransition ---> State : From
+StateTransition ---> State : To

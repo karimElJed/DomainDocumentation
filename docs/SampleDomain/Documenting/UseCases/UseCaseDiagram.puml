@@ -2,44 +2,37 @@
 class UseCaseDiagram {
 }
 
+class DiagramBase {
+}
+
 class UseCase {
-	Identifier : String
-	Title : String
-	ImplementingType : Type
+}
+
+class DiagramObject {
 	Documentation : XmlNode
 	HasDocumentation : Boolean
+	Identifier : String
+	ImplementingType : Type
+	Title : String
 }
 
 class Actor {
 	Stereotype : String
-	Identifier : String
-	Title : String
-	ImplementingType : Type
-	Documentation : XmlNode
-	HasDocumentation : Boolean
 }
 
 class UseCaseRelation {
-	Motivation : String
 	HasMotive : Boolean
-	Identifier : String
-	Title : String
-	ImplementingType : Type
-	Documentation : XmlNode
-	HasDocumentation : Boolean
-}
-
-class DiagramObject {
-	Identifier : String
-	Title : String
-	ImplementingType : Type
-	Documentation : XmlNode
-	HasDocumentation : Boolean
+	Motivation : String
 }
 
 
-UseCaseDiagram "1" --> "*" UseCase : UseCases
-UseCaseDiagram "1" --> "*" Actor : Actors
-UseCaseDiagram "1" --> "*" UseCaseRelation : Relations
-UseCaseRelation --> DiagramObject : From
-UseCaseRelation --> DiagramObject : To
+DiagramBase <|-- UseCaseDiagram
+DiagramObject <|-- UseCase
+DiagramObject <|-- Actor
+DiagramObject <|-- UseCaseRelation
+
+UseCaseDiagram "1" ---> "*" UseCase : UseCases
+UseCaseDiagram "1" ---> "*" Actor : Actors
+UseCaseDiagram "1" ---> "*" UseCaseRelation : Relations
+UseCaseRelation ---> DiagramObject : From
+UseCaseRelation ---> DiagramObject : To

@@ -6,7 +6,6 @@ namespace DomainDocumentation.Diagrams.ClassDiagrams;
 public class ClassDiagram : DiagramBase
 {
     private readonly List<Class> _classes = new();
-    private readonly List<ClassRelation> _relations = new();
     private readonly Class _root;
 
     public ClassDiagram(Type rootClass)
@@ -15,6 +14,9 @@ public class ClassDiagram : DiagramBase
 
         Traverse(_root);
     }
+
+    public IReadOnlyList<Class> Classes => _classes.AsReadOnly();
+    public Class RootClass => _root;
 
     private void Traverse(Class current)
     {
@@ -33,6 +35,11 @@ public class ClassDiagram : DiagramBase
         if (!_classes.Exists(c => c.ImplementingType == classToAdd.ImplementingType))
         {
             _classes.Add(classToAdd);
+
+            foreach (var relation in classToAdd.Relations)
+            {
+                AddClass(relation.To);
+            }
         }
     }
 
@@ -41,13 +48,23 @@ public class ClassDiagram : DiagramBase
         var sb = new StringBuilder();
         sb.AppendLine("@startuml");
 
-        foreach (var classDefinition in _classes)
+        foreach (var @class in _classes)
         {
-           sb.AppendLine(classDefinition.ToPlantUml());
+           sb.AppendLine(@class.ToPlantUml());
         }
 
         sb.AppendLine();
 
+        foreach (var @class in _classes)
+        {
+            foreach (var relation in @class.Relations)
+            {
+                relation.ToPlantUml(sb);
+            }
+        }
+        
+        sb.AppendLine();
+        
         foreach (var classDefinition in _classes)
         {
             foreach (var property in classDefinition.Properties)

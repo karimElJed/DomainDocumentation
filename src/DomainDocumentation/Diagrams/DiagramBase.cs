@@ -13,7 +13,7 @@ public abstract class DiagramBase
         foreach (var @object in objects)
         {
             sb.Append(indentation);
-            sb.AppendLine( @object.ToPlantUml());
+            sb.AppendLine(@object.ToPlantUml());
         }
         
         sb.AppendLine();

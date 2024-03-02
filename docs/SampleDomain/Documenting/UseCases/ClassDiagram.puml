@@ -1,0 +1,10 @@
+@startuml
+class ClassDiagram {
+}
+
+class DiagramBase {
+}
+
+
+DiagramBase <|-- ClassDiagram
+

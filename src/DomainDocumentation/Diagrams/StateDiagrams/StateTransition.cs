@@ -1,6 +1,6 @@
 namespace DomainDocumentation.Diagrams.StateDiagrams;
 
-internal class StateTransition : DiagramObject
+public class StateTransition : DiagramObject
 {
     public StateTransition(State from, State to, string? trigger) : base("")
     {

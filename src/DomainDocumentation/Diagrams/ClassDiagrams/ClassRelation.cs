@@ -22,9 +22,21 @@ public class ClassRelation
 
     public void ToPlantUml(StringBuilder sb)
     {
-        var relationFrom = _relationType == RelationType.OneToMany ? "\"1\" " : "";
-        var relationTo = _relationType == RelationType.OneToMany ? "\"*\" " : "";
-        sb.AppendLine($"{From.Name} {relationFrom}--> {relationTo}{To.Name} : {RelationName}");
+        switch (_relationType)
+        {
+            case RelationType.OneToOne:
+                sb.AppendLine($"{From.Name} ---> {To.Name} : {RelationName}");
+                break;
+            case RelationType.OneToMany:
+                var relationFrom =
+                sb.AppendLine($"{From.Name} \"1\" ---> \"*\" {To.Name} : {RelationName}");
+                break;
+            case RelationType.Extends:
+                sb.AppendLine($"{To.Name} <|-- {From.Name}");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }
 

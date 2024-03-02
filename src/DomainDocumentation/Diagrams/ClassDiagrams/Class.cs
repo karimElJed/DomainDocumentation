@@ -1,13 +1,17 @@
 using System.Collections;
+using System.Diagnostics;
+using System.Reflection;
 using System.Text;
 
 namespace DomainDocumentation.Diagrams.ClassDiagrams;
 
+[DebuggerDisplay("{Name}")]
 public class Class : DiagramObject
 {
     private readonly List<Property> _properties = new();
+    private readonly List<ClassRelation> _relations = new();
     private readonly Type _type;
-
+    
     public Class(Type classType) : base(classType)
     {
         _type = classType;
@@ -27,6 +31,13 @@ public class Class : DiagramObject
             }
         }
 
+        if (!_type.BaseType!.Namespace!.StartsWith("System"))
+        {
+            var extendedClass = new Class(_type.BaseType);
+            var relation = new ClassRelation(this, extendedClass, "extends", RelationType.Extends);
+            _relations.Add(relation);
+        }
+        
         InitializeProperties();
     }
 
@@ -34,6 +45,7 @@ public class Class : DiagramObject
 
     public string Name { get; }
     public IEnumerable<Property> Properties => _properties.AsReadOnly();
+    public IEnumerable<ClassRelation> Relations => _relations.AsReadOnly();
 
 
     public override string ToPlantUml()
@@ -41,7 +53,7 @@ public class Class : DiagramObject
         var sb = new StringBuilder();
         sb.AppendLine($"class {Name} {{");
         
-        foreach (var property in _properties)
+        foreach (var property in _properties.OrderBy(p => p.PropertyName))
         {
             property.ToPlantUml(sb);
         }
@@ -54,7 +66,7 @@ public class Class : DiagramObject
     
     private void InitializeProperties()
     {
-        var properties = _type.GetProperties();
+        var properties = _type.GetProperties(BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Instance);
         foreach (var property in properties)
         {
             bool isOneToManyRelation = false;
